@@ -5,10 +5,10 @@
           <!-- Header on the left -->
           <h1 class="header-title">Munch, Match, and Melody</h1>
         </div>
-        <!-- <div class="col-md-6"> -->
+        <div class="col-md-6">
         <!-- Search input on the right -->
-            <!-- <input type="text" v-model="searchQuery" placeholder="Search reviews..." class="form-control">
-        </div> -->
+            <input type="text" placeholder="Search..." class="form-control">
+        </div>
       </div>
   
       <!-- Card grid -->
