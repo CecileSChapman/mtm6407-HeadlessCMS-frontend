@@ -1,22 +1,27 @@
 <template>
-  
-  <div class="post-single">
-    <h2> {{ data.data.attributes.title }}</h2>
-    <p>By: 
-      <span v-for="author in data.data.attributes.authors.data">
-          {{ author.attributes.firstName }} {{ author.attributes.lastName }}
-      </span> 
-    </p>
-    <img :src="data.data.attributes.image.data.attributes.url" :alt="data.data.attributes.image.data.attributes.alternativeText" width="600"/>
-
-    <div class="post-content">
-      <p> 
-        {{data.data.attributes.summary}}
-      </p>
+  <div class="container">
+    <div class="row">
+      <!-- Image column -->
+      <div class="col-md-6">
+        <img :src="data.data.attributes.image.data.attributes.url" :alt="data.data.attributes.image.data.attributes.alternativeText" class="img-fluid" width="600"/>
+      </div>
+      <!-- Content column -->
+      <div class="col-md-6">
+        <div class="post-single">
+          <h2 class="header-title">{{ data.data.attributes.title }}</h2>
+          <p>By: 
+            <span v-for="(author, index) in data.data.attributes.authors.data" :key="index">
+              {{ author.attributes.firstName }} {{ author.attributes.lastName }}
+              <span v-if="index !== data.data.attributes.authors.data.length - 1">,</span>
+            </span> 
+          </p>
+          <div class="post-content">
+            <p>{{ data.data.attributes.content }}</p>
+          </div>
+        </div>
+      </div>
     </div>
-    
   </div>
-
 </template>
 
 <script setup>
@@ -30,13 +35,28 @@
 </script>
 
 <style scoped>
-span{
-  margin-right:10px;
+.container {
+  margin: 30px;
+  margin-left: 60px;
 }
 
-.post-content{
-  max-width: 600px;
+/* Header style */
+.header-title {
+  color: #0b1957;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 
+/* Image style */
+img {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
 
+/* Post content style */
+.post-content p {
+  color: #555;
+}
 </style>
