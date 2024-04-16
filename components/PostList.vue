@@ -1,14 +1,16 @@
 <template>
-
+      <h1 style="color: #EC6DBD; margin-left: 70px;">Epic Reviews</h1>
  <div class="postlist-container container d-flex gap-4">
     <div v-for="post in posts.data">       
 
-        <div class="post-card card" style="width: 19rem;">
+        <div class="post-card card" style="width: 19rem; border: solid 3px #EC6DBD; border-radius: 8px;">
             <img class="card-img-top postlist-img img-fluid" :src="post.attributes.image.data.attributes.url" :alt="post.attributes.title">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{post.attributes.title}}</h5>
                 <p class="card-text">{{ post.attributes.summary }}</p>
-                <a href="#" class="btn btn-primary align-self-start mt-auto">Go somewhere</a>
+                <RouterLink :to="BASE_URL + post.id">
+                    <a href="#" class="btn btn-primary align-self-start mt-auto">Read</a>
+                </RouterLink>
         </div>
 </div>
        
@@ -19,6 +21,8 @@
 </template>
 
 <script setup>
+
+const BASE_URL = '/posts/'
 
 defineProps({
     posts: Object
@@ -31,7 +35,6 @@ defineProps({
 /* .card-body {
     height: 300px;
 } */
-
 
     .card-body p {
     overflow: hidden;
